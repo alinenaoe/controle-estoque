@@ -18,3 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/produtos/cadastrar', 'ProductController@viewForm');
+//padrão é usar o mesmo nome, mas pode mudar para "salvar produto", por exemplo
+Route::post('/produtos/cadastrar','ProductController@create');
