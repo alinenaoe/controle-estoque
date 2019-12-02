@@ -19,6 +19,20 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
 Route::get('/produtos/cadastrar', 'ProductController@viewForm');
 //padrão é usar o mesmo nome, mas pode mudar para "salvar produto", por exemplo
 Route::post('/produtos/cadastrar','ProductController@create');
+
+
+//valor opcional de id
+Route::get('/produtos/atualizar/{id?}','ProductController@viewFormUpdate');
+//não precisa de id pq foi enviado pelo input hidden
+Route::post('/produtos/atualizar','ProductController@update');
+
+
+Route::get('/produtos', 'ProductController@viewAllProducts');
+
+
+Route::get('/produtos/deletar/{id?}', 'ProductController@delete');
+
