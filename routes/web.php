@@ -15,12 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(); //coloca automaticamente rotas de login e register
+Route::get('login/google', 'Auth\LoginController@redirectToGoogle'); //fazendo a rota para usar a API do google
+Route::get('login/google/callback', 'Auth\LoginController@receiveDataGoogle'); 
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::get('/produtos/cadastrar', 'ProductController@viewForm');
+Route::get('/produtos/cadastrar', 'ProductController@viewForm')->middleware('checkuser');
 //padrão é usar o mesmo nome, mas pode mudar para "salvar produto", por exemplo
 Route::post('/produtos/cadastrar','ProductController@create');
 

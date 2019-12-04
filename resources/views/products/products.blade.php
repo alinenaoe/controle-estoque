@@ -25,14 +25,14 @@
                     </tr>
                 </thead>
                     <tbody>
-                    @foreach($listProducts as $product)
+                    @forelse($listProducts as $product)
                         <tr>
                             <th scope="row">{{$product->id}}</th>
                                 <td>{{$product->name}}</td>
                                 <td>{{$product->description}}</td>
                                 <td>{{$product->quantity}}</td>
                                 <td>R$ {{$product->price}}</td>
-                                <td>id do usuário</td>
+                                <td>{{$product->user->name}}</td>
                                 <td>{{$product->created_at}}</td>
                                 <td>{{$product->updated_at}}</td>
                                 <td>
@@ -41,7 +41,10 @@
                                 </td>
                             </th>
                         </tr>
-                    @endforeach    
+                    @empty
+                        <h4 class="text-danger">Não há produtos cadastrados</h4>
+                        
+                    @endforelse    
                     </tbody>
 
                 </table>
